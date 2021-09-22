@@ -1,0 +1,370 @@
+type Mutation {
+  signup(email: String!, password: String!, name: String!): AuthPayload
+  passwordForgot(email: String!): Boolean!
+  createNotification(message: String!): Boolean!
+  passwordReset(password: String!, token: String!): Boolean!
+  login(email: String!, password: String!): AuthPayload
+  updateUser(
+    name: String!
+    summary: String
+    profileBG: String
+    profileBGStyle: String
+    profileImg: String
+    profileImgStyle: String
+    sections: [SectionInput]
+    autosave: Boolean
+  ): User
+  markAsRead(conversationId: String!): String
+  makePayment(amount: String!, currency: String!, contractId: String!): String
+  updateGame(id: String!, game: GameInput!): String
+  createGame(id: String!, game: GameInput!): String
+  removeGame(id: String!): Boolean
+  updatePaymentTerm(id: String!, paymentTerm: PaymentTermInput!): String
+  createPaymentTerm(id: String!, paymentTerm: PaymentTermInput!): String
+  removePaymentTerm(id: String!): Boolean
+  updateContract(id: String!, contract: ContractInput!): String
+  submitContract(id: String!): String
+  signContract(contractId: String!): String
+  declineContract(contractId: String!): String
+  createContract(id: String!, contract: ContractInput!): String
+  removeContract(id: String!): Boolean
+  updateJob(id: String!, job: JobInput!): String
+  createJob(id: String!, job: JobInput!): String
+  removeJob(id: String!): Boolean
+  updateInvite(id: String!, invite: InviteInput!): String
+  createInvite(id: String!, invite: InviteInput!): String
+  removeInvite(id: String!): Boolean
+  submitBrief(jobId: String!): Boolean
+  declineInvite(id: String!): Boolean
+  updateEmail(email: String!): Boolean
+  deleteAccount: Boolean
+  updateSection(id: String!, section: SectionInput): Section
+  updateGallerySection(id: String!, section: SectionInput): Section
+  createGallerySection(id: String!, section: SectionInput): String
+  addFavourite(id: String!, addRemove: String!): String
+  updateTestimonial(
+    testimonial: TestimonialInput!
+    sectionId: String!
+  ): Testimonial
+  createTestimonial(testimonial: TestimonialInput!, sectionId: String!): String
+  updateProject(project: NotableProjectsInput!, sectionId: String!): String
+  createProject(project: NotableProjectsInput!, sectionId: String!): String
+  removeSection(id: String!): Boolean
+  removeNotableProject(id: String!): Boolean
+  removeNotification(id: String!): [Notification]
+  removeTestimonial(id: String!): Boolean
+  createMessage(id: String!, message: MessageInput!): String
+  updateMessage(id: String!, message: MessageInput!): String
+  removeMessage(id: String!): Boolean
+}
+
+type Query {
+  profile: User!
+  getGame(gameId: String!): Game
+  getGames: [Game]
+  getJob(jobId: String!): Job
+  getJobs: [Job]
+  getContract(jobId: String!): [Contract]
+  getContractId(contractId: String!): [Contract]
+  previewContract(contractId: String!): Contract
+  getPaymentTerms(contractId: String!): [PaymentTerm]
+  getMessages(jobId: String!): [Message]
+  getConversations(status: String!): [Conversation]
+  getConversation(conversationId: String!, page: Int!): Conversation
+  profilePreview(userId: String!): User!
+  sectionsPreview(userId: String!): [Section!]
+  getNotifications: [Notification!]
+  getSections: [Section!]
+  getGalleries: [Gallery!]
+  getImages: [GalleryImage!]
+  getTestimonials(sectionId: String!): [Section!]
+  getCreatives: [User!]
+  getInvites: [Invite!]
+  determineConversationId(jobId: String, userId: String): String
+  counts: Count
+}
+
+input ContractInput {
+  notes: String
+  deadline: String
+  cost: Int
+  paymentTerms: [PaymentTermInput]
+  currency: String!
+  jobId: String
+  status: String
+  signedBy: String
+}
+
+type Contract {
+  id: String!
+  notes: String
+  deadline: String
+  cost: Int
+  paymentTerms: [PaymentTerm]
+  currency: String!
+  status: String
+  job: Job!
+  user: User
+  signedBy: [User]
+  createdAt: String
+  updatedAt: String
+  signedDate: String
+  payments: [Payment]
+}
+
+type Payment {
+  id: String!
+  amount: Int
+  currency: String!
+  status: String
+  paidBy: User!
+  contract: Contract
+  paymentId: String
+  createdAt: String
+  updatedAt: String
+}
+
+input PaymentTermInput {
+  id: String
+  percent: Int
+  description: String!
+  contractId: String!
+}
+
+type PaymentTerm {
+  id: String!
+  percent: Int
+  description: String!
+  contract: Contract
+}
+
+input InviteInput {
+  title: String
+  message: String
+  gameId: String!
+  jobId: String!
+  userId: String!
+}
+
+input GameInput {
+  name: String!
+  img: String
+  backgroundImg: String
+  summary: String
+  location: String
+  gallery: GalleryInput
+  showreel: String
+  type: String
+}
+
+input JobInput {
+  name: String!
+  img: String
+  summary: String
+  location: String
+  creativeSummary: String
+  gallery: GalleryInput
+  gameId: String!
+  showreel: String
+  type: String
+  submitted: Boolean
+}
+
+input MessageInput {
+  messageStr: String!
+  conversationId: String!
+}
+
+type Message {
+  id: ID!
+  messageStr: String!
+  job: Job
+  sender: User!
+  receiver: User
+  createdAt: String
+  status: String
+  conversation: Conversation
+}
+
+input SectionInput {
+  title: String
+  summary: String
+  gallery: GalleryInput
+  notableProjects: [NotableProjectsInput]
+  testimonials: [TestimonialInput]
+  showreel: String
+  type: String
+}
+
+input TestimonialInput {
+  id: String!
+  summary: String
+  image: String
+  name: String
+  status: Boolean
+}
+
+type AuthPayload {
+  token: String
+  user: User
+}
+
+type Game {
+  id: ID!
+  name: String!
+  keywords: [String]
+  img: String
+  backgroundImg: String
+  summary: String
+  location: String
+  gallery: Gallery
+  showreel: String
+  user: User!
+  type: String
+  createdAt: String
+  jobs: [Job]
+}
+
+type Count {
+  id: ID!
+  invites: String
+  messages: String
+}
+
+type Job {
+  id: ID!
+  name: String!
+  keywords: [String]
+  img: String
+  summary: String
+  creativeSummary: String
+  location: String
+  gallery: Gallery
+  showreel: String
+  user: User!
+  type: String
+  createdAt: String
+  game: Game!
+  submitted: Boolean
+  invite: [Invite!]
+  messages: [Message]
+  contracts: [Contract]
+}
+
+type Subscription {
+  newMessage(conversationId: String!): Message
+}
+
+type Conversation {
+  id: ID!
+  messages: [Message]
+  unreadMessages: String
+  participants: [User]
+  job: Job
+  createdAt: String
+}
+
+type User {
+  id: ID!
+  name: String!
+  resetToken: String
+  email: String!
+  keywords: [String]
+  profileImg: String
+  profileImgStyle: String
+  profileBG: String
+  profileBGStyle: String
+  autosave: Boolean
+  summary: String
+  location: String
+  sections: [Section!]
+  favourites: [String]
+  games: [Game!]
+  jobs: [Job!]
+  notifications: [Notification!]!
+  invites: [Invite!]
+  invitesReceived: [Invite!]
+  conversations: [Conversation]
+  contracts: [Contract!]!
+}
+
+type Invite {
+  id: ID!
+  title: String!
+  message: String!
+  status: String
+  game: Game!
+  job: Job!
+  user: User!
+  receiver: User!
+  contracts: [Contract]
+}
+
+type Notification {
+  id: ID!
+  title: String!
+  message: String!
+  linkTo: String
+  icon: String!
+  discarded: Boolean
+  createdAt: String
+  user: User!
+}
+
+type Section {
+  id: ID!
+  title: String
+  summary: String
+  gallery: Gallery
+  notableProjects: [NotableProjects]
+  testimonials: [Testimonial]
+  showreel: String
+  user: User
+  type: String
+}
+
+type NotableProjects {
+  id: ID!
+  summary: String
+  image: String
+  name: String
+}
+
+input NotableProjectsInput {
+  id: String
+  summary: String
+  image: String
+  name: String
+}
+
+type Testimonial {
+  id: ID!
+  summary: String
+  image: String
+  name: String
+  status: Boolean
+}
+
+type Gallery {
+  id: ID!
+  summary: StringNotableProject
+  images: [GalleryImage]
+  section: Section
+}
+
+type GalleryImage {
+  id: ID!
+  img: String!
+  title: String
+  gallery: Gallery
+}
+
+input GalleryInput {
+  summary: String
+  images: [GalleryImageInput!]!
+}
+
+input GalleryImageInput {
+  img: String!
+  title: String
+}
