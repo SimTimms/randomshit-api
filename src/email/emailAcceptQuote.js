@@ -10,7 +10,7 @@ export default async function emailAcceptQuote(user, quoteDeets, sender) {
       {
         From: {
           Email: emailAddress.noreply,
-          Name: 'RandomShit',
+          Name: 'MiniPainter3d',
         },
         To: [
           {
@@ -19,9 +19,9 @@ export default async function emailAcceptQuote(user, quoteDeets, sender) {
           },
         ],
         Subject: `${sender.name} has ACCEPTED your quote`,
-        TextPart: `Congratulations, ${sender.name} has ACCEPTED your quote on RandomShit: View the full quote at ${emailAddress.appURL}. ${emailAddress.signoffHTML}`,
+        TextPart: `Congratulations, ${sender.name} has ACCEPTED your quote on MiniPainter3d: View the full quote at ${emailAddress.appURL}. ${emailAddress.signoffHTML}`,
         HTMLPart: `<p>Hi ${user.name},</p>
-        <p>Congratulations, ${sender.name} has ACCEPTED your quote on RandomShit</p><p style='background:#57499e; padding:20px; border-radius:5px; font-size:20px; color:#fff; text-align:center; text-align:center'>${quoteDeets.cost} ${quoteDeets.currency}<br/>${quoteDeets.deadline}<br/>ACCEPTED</p><p>We'll let you know as soon as the Client has deposited the payment.</p><p>View the full quote at <a style="border-radius:5px; padding:10px; color:#57499e; font-weight:bold; margin-top:10px; margin-bottom:10px;" href='${emailAddress.appURL}'>RandomShit</a></p><p>${emailAddress.signoffHTML}</p>
+        <p>Congratulations, ${sender.name} has ACCEPTED your quote on MiniPainter3d</p><p style='background:#57499e; padding:20px; border-radius:5px; font-size:20px; color:#fff; text-align:center; text-align:center'>${quoteDeets.cost} ${quoteDeets.currency}<br/>${quoteDeets.deadline}<br/>ACCEPTED</p><p>We'll let you know as soon as the Client has deposited the payment.</p><p>View the full quote at <a style="border-radius:5px; padding:10px; color:#57499e; font-weight:bold; margin-top:10px; margin-bottom:10px;" href='${emailAddress.appURL}'>MiniPainter3d</a></p><p>${emailAddress.signoffHTML}</p>
         `,
       },
     ],

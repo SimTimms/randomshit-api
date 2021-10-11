@@ -30,8 +30,10 @@ exports.sign_s3 = async (req, res) => {
   if (!req.body.fileName) {
     return res.send('No File Submitted');
   }
-  let fileName = filenamify(req.body.fileName, { maxLength: 10 });
-  fileName = `${userId}/${fileName}-${userId}-${new Date().getTime()}`;
+  //let fileName = filenamify(req.body.fileName, { maxLength: 10 });
+
+  let fileName = `${userId}/${req.body.fileName}`;
+
   const fileType = req.body.fileType;
   const fileSize = req.body.fileSize;
 
@@ -44,8 +46,11 @@ exports.sign_s3 = async (req, res) => {
     'PNG',
     'gif',
     'GIF',
+    'gltf',
+    'bin',
+    'js',
   ];
-  const approvedFileSize = 2000000;
+  const approvedFileSize = 20000000;
 
   if (approvedFileTypes.indexOf(fileType.toLowerCase()) === -1) {
     res.json({ success: false, error: 'PNG, GIF or JPG only' });
@@ -55,7 +60,7 @@ exports.sign_s3 = async (req, res) => {
   if (fileSize > approvedFileSize) {
     res.json({
       success: false,
-      error: `${approvedFileSize / 2000000} MB`,
+      error: `${approvedFileSize / 20000000} MB`,
     });
 
     return;

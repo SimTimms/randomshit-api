@@ -5,11 +5,13 @@ import { UserTC, ActivityLog } from './';
 import { getUserId } from '../utils';
 const ObjectId = mongoose.Types.ObjectId;
 
-const WebshopSchema = new Schema({
+const GamePartSchema = new Schema({
+  _id: { type: String },
   name: { type: String },
-  logo: { type: String },
-  url: { type: String },
-  price: { type: String },
+  gltf: { type: String },
+  js: { type: String },
+  bin: { type: String },
+  img: { type: String },
 });
 
 const GamePostSchema = new Schema({
@@ -24,12 +26,15 @@ export const GameSchema = new Schema(
   {
     name: { type: String },
     logo: { type: String },
-    featuredImage: { type: String },
+    featureImage: { type: String },
+    gltf: { type: String },
+    bin: { type: String },
+    js: { type: String },
     summary: { type: String },
     url: { type: String },
     showreel: { type: String },
     price: { type: String },
-    webshop: { type: [WebshopSchema] },
+    gamePart: { type: [GamePartSchema] },
     gamePost: { type: [GamePostSchema] },
     approved: { type: Boolean },
     user: {
@@ -102,13 +107,12 @@ GameTC.addResolver({
       actionBy: userId,
     });
     const Games = await Game.find({
-      featuredImage: { $ne: '' },
-      featuredImage: { $ne: null },
-      summary: { $ne: null },
-      summary: { $ne: '' },
+      gltf: { $ne: '' },
+      gltf: { $ne: null },
+      bin: { $ne: '' },
+      bin: { $ne: null },
       title: { $ne: null },
       title: { $ne: '' },
-      $and: [{ url: { $ne: null } }, { url: { $ne: '' } }],
     }).sort({ createdAt: -1 });
 
     return Games;

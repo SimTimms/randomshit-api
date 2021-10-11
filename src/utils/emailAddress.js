@@ -1,13 +1,13 @@
 const emailAddress = {
-  tech: 'support@RandomShit.com',
-  jamie: 'jamie@RandomShit.com',
-  tim: 'tim@RandomShit.com',
-  info: 'info@RandomShit.com',
-  noreply: 'noreply@RandomShit.com',
-  signoffPlain: 'The RandomShit Team',
-  signoffHTML: '<strong>The RandomShit Team</strong>',
-  appURL: 'https://app.RandomShit.com',
-  messagesURL: 'https://app.RandomShit.com/app/conversations',
+  tech: 'support@MiniPainter3d.com',
+  jamie: 'jamie@MiniPainter3d.com',
+  tim: 'tim@MiniPainter3d.com',
+  info: 'info@MiniPainter3d.com',
+  noreply: 'noreply@MiniPainter3d.com',
+  signoffPlain: 'The MiniPainter3d Team',
+  signoffHTML: '<strong>The MiniPainter3d Team</strong>',
+  appURL: 'https://app.MiniPainter3d.com',
+  messagesURL: 'https://app.MiniPainter3d.com/app/conversations',
 };
 
 module.exports = {

@@ -10,7 +10,7 @@ export default async function emailForgot(user, actionLink) {
       {
         From: {
           Email: emailAddress.noreply,
-          Name: 'RandomShit',
+          Name: 'MiniPainter3d',
         },
         To: [
           {
@@ -18,7 +18,7 @@ export default async function emailForgot(user, actionLink) {
             Name: user.name,
           },
         ],
-        Subject: 'Reset your RandomShit password',
+        Subject: 'Reset your MiniPainter3d password',
         TextPart: `You have requested a password reset, please go to: ${actionLink}. If this was not you contact ${emailAddress.tech}. ${emailAddress.signoffPain}`,
         HTMLPart: `<p>Hi,</p><p>You have requested a password reset, please click this link to continue: </p><p><strong><br/><a style="background:#ddd; border-radius:5px; text-decoration:none; padding:10px; color:#444; margin-top:10px; margin-bottom:10px;" href='${actionLink}'>Reset My Password</a><br/><br/></strong></p><p>${emailAddress.signoffHTML}</p><p style="font-size:10px">If this was not you contact <a href='${emailAddress.tech}'>${emailAddress.tech}</a></p>`,
       },

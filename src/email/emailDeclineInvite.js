@@ -10,7 +10,7 @@ export default async function emailDeclineInvite(user, creative) {
       {
         From: {
           Email: emailAddress.noreply,
-          Name: 'RandomShit',
+          Name: 'MiniPainter3d',
         },
         To: [
           {
@@ -19,9 +19,9 @@ export default async function emailDeclineInvite(user, creative) {
           },
         ],
         Subject: `${creative.name} has declined your invite`,
-        TextPart: `${creative.name} has declined your invite on RandomShit: View your project at ${emailAddress.appURL}. ${emailAddress.signoffHTML}`,
+        TextPart: `${creative.name} has declined your invite on MiniPainter3d: View your project at ${emailAddress.appURL}. ${emailAddress.signoffHTML}`,
         HTMLPart: `<p>Hi ${user.name},</p>
-        <p>${creative.name} has declined your invite on RandomShit</p><p>View your project at <a style="border-radius:5px; padding:10px; color:#57499e; font-weight:bold; margin-top:10px; margin-bottom:10px;" href='${emailAddress.appURL}'>RandomShit</a></p><p>${emailAddress.signoffHTML}</p>
+        <p>${creative.name} has declined your invite on MiniPainter3d</p><p>View your project at <a style="border-radius:5px; padding:10px; color:#57499e; font-weight:bold; margin-top:10px; margin-bottom:10px;" href='${emailAddress.appURL}'>MiniPainter3d</a></p><p>${emailAddress.signoffHTML}</p>
         `,
       },
     ],

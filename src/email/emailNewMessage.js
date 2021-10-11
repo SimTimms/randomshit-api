@@ -10,7 +10,7 @@ export default async function emailNewMessage(user, subject) {
       {
         From: {
           Email: emailAddress.noreply,
-          Name: 'RandomShit',
+          Name: 'MiniPainter3d',
         },
         To: [
           {

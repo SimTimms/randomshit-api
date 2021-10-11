@@ -10,7 +10,7 @@ export default async function emailQuote(user, quoteDeets, sender) {
       {
         From: {
           Email: emailAddress.noreply,
-          Name: 'RandomShit',
+          Name: 'MiniPainter3d',
         },
         To: [
           {
@@ -18,10 +18,10 @@ export default async function emailQuote(user, quoteDeets, sender) {
             Name: user.name,
           },
         ],
-        Subject: `${sender.name} has responded to your job on RandomShit`,
-        TextPart: `${sender.name} has responded to your job on RandomShit: ${quoteDeets.cost} ${quoteDeets.currency}, ${quoteDeets.deadline}. View the full quote at ${emailAddress.appURL}. ${emailAddress.signoffHTML}`,
+        Subject: `${sender.name} has responded to your job on MiniPainter3d`,
+        TextPart: `${sender.name} has responded to your job on MiniPainter3d: ${quoteDeets.cost} ${quoteDeets.currency}, ${quoteDeets.deadline}. View the full quote at ${emailAddress.appURL}. ${emailAddress.signoffHTML}`,
         HTMLPart: `<p>Hi ${user.name},</p>
-        <p>${sender.name} has responded to your job on RandomShit</p><p style='background:#57499e; padding:20px; border-radius:5px; font-size:20px; color:#fff; text-align:center; text-align:center'>${quoteDeets.cost} ${quoteDeets.currency}<br/>${quoteDeets.deadline}</p><p>View the full quote at <a style="border-radius:5px; padding:10px; color:#57499e; font-weight:bold; margin-top:10px; margin-bottom:10px;" href='${emailAddress.appURL}'>RandomShit</a></p><p>${emailAddress.signoffHTML}</p>
+        <p>${sender.name} has responded to your job on MiniPainter3d</p><p style='background:#57499e; padding:20px; border-radius:5px; font-size:20px; color:#fff; text-align:center; text-align:center'>${quoteDeets.cost} ${quoteDeets.currency}<br/>${quoteDeets.deadline}</p><p>View the full quote at <a style="border-radius:5px; padding:10px; color:#57499e; font-weight:bold; margin-top:10px; margin-bottom:10px;" href='${emailAddress.appURL}'>MiniPainter3d</a></p><p>${emailAddress.signoffHTML}</p>
         `,
       },
     ],

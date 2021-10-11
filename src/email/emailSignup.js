@@ -9,8 +9,8 @@ export default async function emailSignup(email, name) {
     Messages: [
       {
         From: {
-          Email: 'welcome@RandomShit.com',
-          Name: 'RandomShit',
+          Email: 'welcome@MiniPainter3d.com',
+          Name: 'MiniPainter3d',
         },
         To: [
           {
@@ -18,9 +18,9 @@ export default async function emailSignup(email, name) {
             Name: name,
           },
         ],
-        Subject: 'Welcome to RandomShit',
+        Subject: 'Welcome to MiniPainter3d',
         TextPart: `It's great to have you on board, login and set up your profile here: ${emailAddress.appURL}`,
-        HTMLPart: `<p>Welcome to RandomShit,</p><p>It's great to have you on board, login and create your profile here:</p><p><strong><br/><a style="background:#ddd; border-radius:5px; text-decoration:none; padding:10px; color:#444; margin-top:10px; margin-bottom:10px;" href='${emailAddress.appURL}'>Let's Begin</a><br/><br/></strong></p><p>${emailAddress.signoffHTML}</p><p style="font-size:10px">If this was not you contact <a href='${emailAddress.tech}'>${emailAddress.tech}</a></p>`,
+        HTMLPart: `<p>Welcome to MiniPainter3d,</p><p>It's great to have you on board, login and create your profile here:</p><p><strong><br/><a style="background:#ddd; border-radius:5px; text-decoration:none; padding:10px; color:#444; margin-top:10px; margin-bottom:10px;" href='${emailAddress.appURL}'>Let's Begin</a><br/><br/></strong></p><p>${emailAddress.signoffHTML}</p><p style="font-size:10px">If this was not you contact <a href='${emailAddress.tech}'>${emailAddress.tech}</a></p>`,
       },
     ],
   });
