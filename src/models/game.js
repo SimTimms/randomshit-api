@@ -114,6 +114,7 @@ GameTC.addResolver({
       bin: { $ne: null },
       title: { $ne: null },
       title: { $ne: '' },
+      approved: true,
     }).sort({ createdAt: -1 });
 
     return Games;
