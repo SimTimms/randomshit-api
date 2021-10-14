@@ -36,6 +36,7 @@ export const GameSchema = new Schema(
     price: { type: String },
     gamePart: { type: [GamePartSchema] },
     gamePost: { type: [GamePostSchema] },
+    savedImage: { type: String },
     approved: { type: Boolean },
     user: {
       type: Schema.Types.ObjectId,
