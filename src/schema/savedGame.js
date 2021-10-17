@@ -9,6 +9,7 @@ const SavedGameQuery = {
   savedGameCount: SavedGameTC.getResolver('count'),
   savedGameConnection: SavedGameTC.getResolver('connection'),
   savedGamePagination: SavedGameTC.getResolver('pagination'),
+  myModels: SavedGameTC.getResolver('myModels'),
 };
 
 const SavedGameMutation = {

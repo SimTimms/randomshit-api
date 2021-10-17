@@ -21,9 +21,11 @@ import { KickstarterQuery, KickstarterMutation } from './kickstarter';
 import { MyPostQuery, MyPostMutation } from './myPost';
 import { ActivityLogQuery, ActivityLogMutation } from './activityLog';
 import { SavedGameQuery, SavedGameMutation } from './savedGame';
+import { FactionQuery, FactionMutation } from './faction';
 import { CountQuery } from './count';
 
 schemaComposer.Query.addFields({
+  ...FactionQuery,
   ...SavedGameQuery,
   ...ActivityLogQuery,
   ...MyPostQuery,
@@ -48,6 +50,7 @@ schemaComposer.Query.addFields({
 });
 
 schemaComposer.Mutation.addFields({
+  ...FactionMutation,
   ...SavedGameMutation,
   ...ActivityLogMutation,
   ...MyPostMutation,

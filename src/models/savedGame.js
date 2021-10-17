@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 import timestamps from 'mongoose-timestamp';
 import { composeWithMongoose } from 'graphql-compose-mongoose';
-import { UserTC } from './';
+import { UserTC, FactionTC, GameTC } from './';
 import { getUserId } from '../utils';
 
 const ObjectId = mongoose.Types.ObjectId;
@@ -10,7 +10,16 @@ export const SavedGameSchema = new Schema(
   {
     url: { type: String },
     likes: [{ type: String }],
-    gameId: { type: String },
+    unitName: { type: String },
+    unitHistory: { type: String },
+    unitRank: { type: String },
+    saveDataColors: { type: String },
+    saveDataParts: { type: String },
+    faction: { type: Schema.Types.ObjectId, ref: 'Faction' },
+    model: {
+      type: Schema.Types.ObjectId,
+      ref: 'Game',
+    },
     user: {
       type: Schema.Types.ObjectId,
       ref: 'User',
@@ -27,12 +36,42 @@ SavedGameSchema.index({ createdAt: 1, updatedAt: 1 });
 export const SavedGame = mongoose.model('SavedGame', SavedGameSchema);
 export const SavedGameTC = composeWithMongoose(SavedGame);
 
+SavedGameTC.addRelation('model', {
+  resolver: () => GameTC.getResolver('findOne'),
+  prepareArgs: {
+    filter: (source) => ({ _id: ObjectId(source.model) }),
+  },
+  projection: { _id: true },
+});
+
 SavedGameTC.addRelation('user', {
   resolver: () => UserTC.getResolver('findOne'),
   prepareArgs: {
     filter: (source) => ({ _id: ObjectId(source.user) }),
   },
   projection: { _id: true },
+});
+
+SavedGameTC.addRelation('faction', {
+  resolver: () => FactionTC.getResolver('findOne'),
+  prepareArgs: {
+    filter: (source) => ({ _id: ObjectId(source.faction) }),
+  },
+  projection: { _id: true },
+});
+
+SavedGameTC.addResolver({
+  name: 'myModels',
+  type: [SavedGameTC],
+  kind: 'query',
+  resolve: async ({ source, args, context }) => {
+    const userId = getUserId(context.headers.authorization);
+    const myModels = await SavedGame.find({
+      user: { $in: userId },
+    }).sort({ createdAt: -1 });
+
+    return myModels;
+  },
 });
 
 SavedGameTC.addResolver({

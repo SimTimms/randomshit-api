@@ -20,8 +20,11 @@ import { MyPost, MyPostTC } from './myPost';
 import { Badge, BadgeTC } from './badge';
 import { ActivityLog, ActivityLogTC } from './activityLog';
 import { SavedGame, SavedGameTC } from './savedGame';
+import { Faction, FactionTC } from './faction';
 
 export {
+  Faction,
+  FactionTC,
   SavedGame,
   SavedGameTC,
   ActivityLog,
