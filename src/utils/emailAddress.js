@@ -6,8 +6,8 @@ const emailAddress = {
   noreply: 'noreply@MiniPainter3d.com',
   signoffPlain: 'The MiniPainter3d Team',
   signoffHTML: '<strong>The MiniPainter3d Team</strong>',
-  appURL: 'https://app.MiniPainter3d.com',
-  messagesURL: 'https://app.MiniPainter3d.com/app/conversations',
+  appURL: 'https://minipainter3d.herokuapp.com',
+  messagesURL: 'https://minipainter3d.herokuapp.com',
 };
 
 module.exports = {

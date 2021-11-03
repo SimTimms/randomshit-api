@@ -26,6 +26,7 @@ export const GameSchema = new Schema(
   {
     name: { type: String },
     logo: { type: String },
+    type: { type: String },
     featureImage: { type: String },
     gltf: { type: String },
     bin: { type: String },
