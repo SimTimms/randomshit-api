@@ -14,6 +14,13 @@ const GamePartSchema = new Schema({
   img: { type: String },
 });
 
+const PositionSchema = new Schema({
+  _id: { type: String },
+  x: { type: Number },
+  y: { type: Number },
+  z: { type: Number },
+});
+
 const GamePostSchema = new Schema({
   name: { type: String },
   summary: { type: String },
@@ -31,6 +38,9 @@ export const GameSchema = new Schema(
     gltf: { type: String },
     bin: { type: String },
     js: { type: String },
+    position: { type: PositionSchema },
+    rotation: { type: PositionSchema },
+    scale: { type: PositionSchema },
     summary: { type: String },
     url: { type: String },
     showreel: { type: String },
