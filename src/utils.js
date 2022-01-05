@@ -18,11 +18,13 @@ export function getUserIdWithoutContext(Authorization) {
     const token = Authorization.replace('Bearer ', '');
 
     // @ts-ignore
+    if (token === 'undefined') {
+      return null;
+    }
     const { userId } = jwt.verify(token, process.env.APP_SECRET);
 
     return userId;
   }
-
   return null;
 }
 

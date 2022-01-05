@@ -38,7 +38,6 @@ app.post('/sign_s3', (req, res) => {
 });
 
 app.post('/generateglft', (req, res) => {
-  console.log(req);
   gltfjsx(req.url);
 });
 

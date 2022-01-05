@@ -8,7 +8,10 @@ exports.sign_s3 = async (req, res) => {
     return res.send('No File Submitted');
   }
 
-  const userId = getUserIdWithoutContext(req.body.headers.Authorization);
+  let userId = null;
+  if (req.body.headers.Authorization) {
+    userId = getUserIdWithoutContext(req.body.headers.Authorization);
+  }
 
   if (
     !process.env.BUCKET ||
@@ -32,7 +35,7 @@ exports.sign_s3 = async (req, res) => {
   }
   //let fileName = filenamify(req.body.fileName, { maxLength: 10 });
 
-  let fileName = `${userId}/${req.body.fileName}`;
+  let fileName = `${userId ? userId : 'public'}/${req.body.fileName}`;
 
   const fileType = req.body.fileType;
   const fileSize = req.body.fileSize;
