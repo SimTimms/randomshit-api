@@ -54,6 +54,7 @@ export const GameSchema = new Schema(
     gamePost: { type: [GamePostSchema] },
     savedImage: { type: String },
     approved: { type: Boolean },
+    patreon: { type: Boolean },
     user: {
       type: Schema.Types.ObjectId,
       ref: 'User',
