@@ -7,14 +7,6 @@ import mongoose from 'mongoose';
 import './utils/db';
 import schema from './schema';
 import cors from 'cors';
-import { Payment, Contract, Job, Notification, User } from './models';
-import { CONTRACT_PAID } from './utils/notifications';
-import { getUserIdWithoutContext } from './utils';
-
-const stripe = require('stripe')(process.env.STRIPE_KEY, {
-  apiVersion: '2020-03-02',
-});
-
 dotenv.config();
 
 const app = express();

@@ -48,6 +48,7 @@ export const GameSchema = new Schema(
     artistName: { type: String },
     artistLink: { type: String },
     licenseLink: { type: String },
+    textures: [{ type: String }],
     copyrightDescription: { type: String },
     whereToBuyLink: { type: String },
     gamePart: { type: [GamePartSchema] },
@@ -120,10 +121,12 @@ GameTC.addResolver({
   kind: 'query',
   resolve: async (rp) => {
     const userId = getUserId(rp.context.headers.authorization);
+
     await ActivityLog.create({
       action: 'browse-games',
       actionBy: userId,
     });
+
     const Games = await Game.find({
       gltf: { $ne: '' },
       gltf: { $ne: null },
@@ -134,7 +137,16 @@ GameTC.addResolver({
       approved: true,
     }).sort({ createdAt: -1 });
 
-    return Games;
+    const MyGames = await Game.find({
+      gltf: { $ne: '' },
+      gltf: { $ne: null },
+      bin: { $ne: '' },
+      bin: { $ne: null },
+      title: { $ne: null },
+      title: { $ne: '' },
+    }).sort({ createdAt: -1 });
+
+    return [...MyGames, ...Games];
   },
 });
 
