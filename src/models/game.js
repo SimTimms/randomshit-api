@@ -134,6 +134,7 @@ GameTC.addResolver({
       bin: { $ne: null },
       title: { $ne: null },
       title: { $ne: '' },
+      featureImage: { $ne: '' },
       approved: true,
     }).sort({ createdAt: -1 });
 
@@ -144,6 +145,8 @@ GameTC.addResolver({
       bin: { $ne: null },
       title: { $ne: null },
       title: { $ne: '' },
+      featureImage: { $ne: '' },
+      user: userId,
     }).sort({ createdAt: -1 });
 
     return [...MyGames, ...Games];

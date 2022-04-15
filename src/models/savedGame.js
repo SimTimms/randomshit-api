@@ -83,12 +83,12 @@ SavedGameTC.addResolver({
     const userId = getUserId(context.headers.authorization);
     const exists = await SavedGame.findOne({
       likes: { $in: userId },
-      url: args.url,
+      url: `https://random-shit-store.s3.amazonaws.com/${args.url}.jpg`,
     });
 
-    if (!exists) {
+    https: if (!exists) {
       await SavedGame.updateOne(
-        { url: args.url },
+        { url: `https://random-shit-store.s3.amazonaws.com/${args.url}.jpg` },
         { $push: { likes: userId } }
       );
     }
