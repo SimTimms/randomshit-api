@@ -32,6 +32,7 @@ const GameMutation = {
   gameRemoveById: GameTC.getResolver('removeById'),
   gameRemoveOne: GameTC.getResolver('removeOne'),
   gameRemoveMany: GameTC.getResolver('removeMany'),
+  createUserCv: GameTC.getResolver('createUserCv'),
 };
 
 export { GameQuery, GameMutation };

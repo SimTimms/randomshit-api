@@ -180,6 +180,16 @@ UserTC.addResolver({
 });
 
 UserTC.addResolver({
+  name: 'createUserCv',
+  args: {},
+  type: 'Boolean',
+  kind: 'mutation',
+  resolve: async (rp) => {
+    return true;
+  },
+});
+
+UserTC.addResolver({
   name: 'getCreatives',
   args: { type: ['String'], page: 'Int', job: 'MongoID' },
   type: [UserTC],
